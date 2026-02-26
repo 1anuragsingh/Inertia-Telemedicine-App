@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disable SWC minification for debugging in production
-  swcMinify: false,
+  turbopack: {},   // required for Next 16 when webpack config exists
 
   async rewrites() {
     return [
@@ -13,11 +12,10 @@ const nextConfig = {
     ];
   },
 
-  // Additional webpack configuration for troubleshooting
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
-        fs: false, // Prevents usage of 'fs' on client-side
+        fs: false,
         path: false,
       };
     }
