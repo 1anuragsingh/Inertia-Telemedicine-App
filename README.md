@@ -155,18 +155,6 @@ TeleMedPilot follows a modular data structure to accommodate patient-doctor inte
 - **Medical Records**: Securely manages patient history, prescriptions, and test results.
 
 
----   
-### **Endnote**
-
-This project was both challenging and rewarding, pushing my skills in state management, API integration, and teamwork. Looking forward to sharing more in future projects!
-
-## **Contact Information**
-
-- **Author:** [Mahmoud Mansy](https://github.com/MMansy19)
-- **Portfolio:** [My Portfolio](https://mahmoud-mansy-portfolio.netlify.app/)
-- **Email:** [mahmoud2abdalfattah@gmail.com](mailto:mahmoud2abdalfattah@gmail.com)
-- **LinkedIn:** [Mahmoud Mansy](https://www.linkedin.com/in/mahmoud-mansy-a189a5232)
-
 ---
 
 
