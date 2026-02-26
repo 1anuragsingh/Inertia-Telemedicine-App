@@ -21,6 +21,7 @@ const doctorEditRoute = require("./Routes/Doctor/Edit");
 // const doctorAddAvailabilityRoute = require('./Routes/Doctor/Availability/add');
 // const doctorDeleteAvailabilityRoute = require('./Routes/Doctor/Availability/Delete');
 const doctorProfilePictureUploadRoute = require("./Routes/Doctor/Profile Picture/Upload");
+
 // const doctorPatientPrescriptionAddRoute = require('./Routes/Doctor/Patient Prescription/Add');
 const doctorAppointmentResponseAddRoute = require("./Routes/Doctor/AppointmentResponse");
 const doctorFollowUpAppointmentAddRoute = require("./Routes/Doctor/BookFollowUp");
@@ -32,7 +33,9 @@ const doctorAvailabilityRoute = require("./Routes/Doctor/Availability");
 const notificationsRoute = require("./Routes/notifications");
 const emailRoute = require("./Routes/Email");
 
+
 const chatRoute = require("./Routes/Chat");
+const chatBotRoute = require("./Routes/ChatbotRoutes");
 const { globalErrorHanlder } = require("./Utilities");
 const port = process.env.PORT || 4000;
 const app = express();
@@ -78,6 +81,8 @@ app.use("/doctor/PatientSummary", doctorPatientsummaryRoute);
 app.use("/appointment-chat", chatRoute);
 app.use("/notifications", notificationsRoute);
 app.use("/email-service", emailRoute);
+app.use("/chatbot", chatBotRoute);
+
 
 /// backOffice
 app.use("/backOffice", backOfficeRoute);

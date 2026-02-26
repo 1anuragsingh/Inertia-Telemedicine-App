@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/navbarComp/navbar";
 import { ProfileProvider } from "@/context/ProfileContext";
 import { DoctorProvider } from "@/context/GetDoctorsContext";
+import AIChatbot from "@/components/AIChatbot"; // Import the AIChatbot component
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,11 +28,12 @@ export default function RootLayout({
       <Head>
         <link rel="icon" href="/logo.png" type="image/png" />
       </Head>
-      <body className={inter.className}>
+       <body className={inter.className}>
         <DoctorProvider>
           <ProfileProvider>
             <Navbar />
             {children}
+            <AIChatbot />
           </ProfileProvider>
         </DoctorProvider>
       </body>
