@@ -13,7 +13,7 @@ const Banner = () => {
             anytime anywhere!
           </h1>
           <p className="text-base md:text-lg font-semibold text-[#343a40]">
-            TeleMedPilot is number one in online Arabic Telemedicine worldwide.
+            TeleMedPilot is number one in online Hindi Telemedicine worldwide.
           </p>
         </div>
         <div className="flex flex-col items-center space-y-4 md:max-w-[80%]">

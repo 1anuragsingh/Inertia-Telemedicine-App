@@ -65,7 +65,7 @@ const Navbar = () => {
         <Link href="/">
           <div className="flex justify-center items-center">
             <img className="w-14 h-14" src="/assets/logo.png" alt="logo" />
-            <span className="text-base md:text-xl">TeleMedPilot</span>
+            <span className="text-base md:text-xl">CareSyncra</span>
           </div>
         </Link>
         <div className="hidden min-[1130px]:inline-block justify-between space-x-4 text-[#4d4d4f] text-sm font-light">
@@ -95,7 +95,6 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex justify-between items-center space-x-0 md:space-x-4 min-[1130px]:space-x-6">
-          <a className="cursor-pointer font-medium">العربيه</a>
           {!token ? (
             <>
               <Link href="/auth/signin">
