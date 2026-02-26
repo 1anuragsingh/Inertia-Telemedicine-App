@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import patientImage from "@/images/patient.png";
@@ -143,7 +143,7 @@ function SignUpForm() {
   ];
 
   const submitButtonClass = [
-    "bg-sky-500 text-neutral-50 text-lg	p-3.5	w-full border-none rounded-lg cursor-pointer transition-[background-color]",
+    "bg-sky-500 text-neutral-50 text-lg p-3.5 w-full border-none rounded-lg cursor-pointer transition-[background-color]",
     "disabled:bg-neutral-300 disabled:text-neutral-700 disabled:cursor-not-allowed enabled:bg-sky-500",
   ].join(" ");
 
@@ -176,7 +176,7 @@ function SignUpForm() {
     }
 
     if (changedValidation && validateFieldsChosen()) {
-      setFormData((prevForm) => ({ ...prevForm })); // Extra rerender needed to correct the current input error status
+      setFormData((prevForm) => ({ ...prevForm }));
     }
   };
 
@@ -311,6 +311,7 @@ function SignUpForm() {
     }));
     setChangedField(() => "birthDate");
   };
+  
   const validateBirthDate = () => {
     let changedValidation = false;
 
@@ -324,7 +325,6 @@ function SignUpForm() {
       }
 
       if (age < 13) {
-        // Example: User must be at least 13 years old
         if (errorMessage.birthDate === "") {
           changedValidation = true;
         }
@@ -562,10 +562,6 @@ function SignUpForm() {
 
     if (!formValid) return;
 
-    // const endpoint = userType === "Patient"
-    //   ? `${process.env.NEXT_PUBLIC_SERVER_NAME}/patient/register`
-    //   : `${process.env.NEXT_PUBLIC_SERVER_NAME}/doctor/register`;
-
     const payload =
       userType === "Patient"
         ? {
@@ -601,22 +597,7 @@ function SignUpForm() {
             Languages: [],
           };
 
-    // try {
-    // const response = await fetch(endpoint, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(payload),
-    //   mode: "cors",
-    // });
-
-    // if (!response.ok) {
-    //   setSignedUp(false);
-    //   setError(true);
-    //   setLoading(false);
-    //   throw new Error("Failed to register");
-    // }
     setTimeout(async () => {
-      // Static token and user data
       const users = {
         token: "staticToken123",
         tokenExpiryDate: "2024-12-31T23:59:59Z",
@@ -639,11 +620,7 @@ function SignUpForm() {
       setSignedUp(true);
       setLoading(false);
       router.replace("/");
-      //   } catch (error) {
-      //     console.error("Error During Signup:", error);
-      //     setLoading(false);
-      //   }
-    }, 2000); // Simulate loading delay
+    }, 2000);
   };
 
   const patientImageClass = `w-20 h-20 border-2 border-solid rounded-full ${
@@ -687,7 +664,7 @@ function SignUpForm() {
       <form onSubmit={handleSubmit}>
         {formFields.map((field) => {
           return (
-            <>
+            <Fragment key={field.name}>
               {field.name === "birthDate" ? (
                 <>
                   <label className="block text-base mb-1.5 font-semibold text-neutral-700">
@@ -707,7 +684,7 @@ function SignUpForm() {
                       className={`bg-neutral-100 w-full py-4 px-6 text-base rounded-lg border border-solid border-neutral-300 grey-100 outline-none transition-[border-color] focus:border-sky-500 focus:bg-neutral-50 ${
                         errorMessage.birthDate ? "p-invalid" : ""
                       }`}
-                      panelClassName="bg-white" // Custom class to set the background of the calendar popup
+                      panelClassName="bg-white"
                     />
                     {errorMessage.birthDate && (
                       <small className="text-xs mt-1 text-red-700 font-semibold">
@@ -718,7 +695,6 @@ function SignUpForm() {
                 </>
               ) : (
                 <InputComponent
-                  key={field.name}
                   label={field.title}
                   type={field.type}
                   name={field.name}
@@ -740,10 +716,10 @@ function SignUpForm() {
                   }
                 />
               )}
-            </>
+            </Fragment>
           );
         })}
-        <div className="mb-4">
+        <div className="mb-4 mt-4">
           <label className="block text-base mb-1.5 font-semibold text-neutral-700">
             Gender *
           </label>
@@ -773,11 +749,12 @@ function SignUpForm() {
             </label>
           </div>
         </div>
-        {userType === "Doctor" ? (
+        {userType === "Doctor" && (
           <>
             <div className="mb-4 relative border-2 border-blue-400 rounded-lg">
               <div className="flex justify-between items-center mb-3 p-3">
                 <button
+                  type="button"
                   className="flex gap-2 rounded-xl border-2 p-2 mb-1 border-green-500 hover:bg-green-100 transition-colors"
                   onClick={handleAddCertificate}
                 >
@@ -854,6 +831,7 @@ function SignUpForm() {
                       required
                     />
                     <button
+                      type="button"
                       className="flex gap-2 rounded-xl border-2 p-2 mb-1 border-red-500 hover:bg-red-100 transition-colors"
                       onClick={() => handleDeleteCertificate(certificate.id)}
                     >
@@ -882,6 +860,7 @@ function SignUpForm() {
             <div className="mb-4 relative border-2 border-blue-400 rounded-lg">
               <div className="flex justify-between items-center mb-3 p-3">
                 <button
+                  type="button"
                   className="flex gap-2 rounded-xl border-2 p-2 mb-1 border-green-500 hover:bg-green-100 transition-colors"
                   onClick={handleAddExperience}
                 >
@@ -970,6 +949,7 @@ function SignUpForm() {
                       required
                     />
                     <button
+                      type="button"
                       className="flex gap-2 rounded-xl border-2 p-2 mb-1 border-red-500 hover:bg-red-100 transition-colors"
                       onClick={() => handleDeleteExperience(experience.id)}
                     >
@@ -998,6 +978,7 @@ function SignUpForm() {
             <div className="mb-4 relative border-2 border-blue-400 rounded-lg">
               <div className="flex justify-between items-center mb-3 p-3">
                 <button
+                  type="button"
                   className="flex gap-2 rounded-xl border-2 p-2 mb-1 border-green-500 hover:bg-green-100 transition-colors"
                   onClick={handleAddInterest}
                 >
@@ -1037,7 +1018,7 @@ function SignUpForm() {
                       required
                     />
                     <InputComponent
-                      label="Interest Categoryty"
+                      label="Interest Category"
                       type="text"
                       name="category"
                       placeholder={
@@ -1049,6 +1030,7 @@ function SignUpForm() {
                       required
                     />
                     <button
+                      type="button"
                       className="flex gap-2 rounded-xl border-2 p-2 mb-1 border-red-500 hover:bg-red-100 transition-colors"
                       onClick={() => handleDeleteInterest(interest.id)}
                     >
@@ -1073,8 +1055,6 @@ function SignUpForm() {
               })}
             </div>
           </>
-        ) : (
-          <></>
         )}
         <p className="mb-2">
           Already have an account?{" "}

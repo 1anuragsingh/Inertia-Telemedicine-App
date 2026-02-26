@@ -13,9 +13,9 @@ const pool = new pg.Pool({
     database: PGDATABASE,
     password: PGPASSWORD,
     port: PGPORT,
-    ssl: {
-        rejectUnauthorized: true,
-    },
+    // ssl: {
+    //     rejectUnauthorized: true,
+    // },
 });
 (async () => {
     try {
